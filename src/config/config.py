@@ -19,35 +19,17 @@ AVAILABLE_MODELS = {
             "type": "bow",
             "description": "Linear model with good interpretability and fast inference"
         },
-        "Random Forest": {
-            "path": MODEL_DIR / "bow_random_forest_model.pkl",
-            "vectorizer": MODEL_DIR / "bow_vectorizer.pkl",
-            "type": "bow",
-            "description": "Ensemble method with high accuracy and feature importance"
-        },
         "Naive Bayes": {
             "path": MODEL_DIR / "bow_naive_bayes_model.pkl",
             "vectorizer": MODEL_DIR / "bow_vectorizer.pkl",
             "type": "bow",
             "description": "Probabilistic classifier, very fast training and inference"
         },
-        "Decision Tree": {
-            "path": MODEL_DIR / "bow_decision_tree_model.pkl",
+        "Random Forest": {
+            "path": MODEL_DIR / "bow_random_forest_model.pkl",
             "vectorizer": MODEL_DIR / "bow_vectorizer.pkl",
             "type": "bow",
-            "description": "Tree-based model with high interpretability"
-        },
-        "K-Nearest Neighbors": {
-            "path": MODEL_DIR / "bow_knn_model.pkl",
-            "vectorizer": MODEL_DIR / "bow_vectorizer.pkl",
-            "type": "bow",
-            "description": "Instance-based learning, good for local patterns"
-        },
-        "Support Vector Machine": {
-            "path": MODEL_DIR / "bow_svm_model.pkl",
-            "vectorizer": MODEL_DIR / "bow_vectorizer.pkl",
-            "type": "bow",
-            "description": "SVM classifier with RBF kernel, excellent for complex patterns"
+            "description": "Ensemble learning model, good performance and interpretability"
         }
     },
     "Pipeline Models": {
@@ -55,11 +37,6 @@ AVAILABLE_MODELS = {
             "path": MODEL_DIR / "pipeline_logistic_regression_model.pkl",
             "type": "pipeline",
             "description": "Complete pipeline with TF-IDF transformation and Logistic Regression"
-        },
-        "TF-IDF + Support Vector Machine": {
-            "path": MODEL_DIR / "pipeline_svm_model.pkl",
-            "type": "pipeline",
-            "description": "Complete pipeline with TF-IDF transformation and SVM classifier"
         }
     }
 }
@@ -100,4 +77,21 @@ METRICS_CONFIG = {
     "display_metrics": ["confidence", "prediction_time", "model_info"],
     "confidence_threshold": 0.7,
     "show_probability_distribution": True
+}
+# Tham số xử lý văn bản
+TEXT_PROCESSING_PARAMS = {
+    'min_word_length': 2,        # Độ dài tối thiểu của từ
+    'max_features': 1000,        # Số features tối đa
+    'use_nltk_stopwords': True,  # Có sử dụng NLTK stopwords không
+    'fallback_stopwords': {      # Stopwords fallback
+        'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 
+        'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 
+        'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 
+        'should', 'may', 'might', 'must', 'can', 'shall'
+    },
+    'default_ngram_range': (1, 1),  # N-gram range mặc định
+    'default_min_df': 1,            # Document frequency tối thiểu mặc định
+    'default_max_df': 1.0,          # Document frequency tối đa mặc định
+    'default_analyzer': 'word',     # Analyzer mặc định
+    'default_token_pattern': r"(?u)\b\w\w+\b"  # Regex pattern mặc định
 }
